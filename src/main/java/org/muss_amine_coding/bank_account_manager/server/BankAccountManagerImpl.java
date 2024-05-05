@@ -5,6 +5,7 @@ import org.muss_amine_coding.bank_account_manager.remote.BankAccountManager;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 

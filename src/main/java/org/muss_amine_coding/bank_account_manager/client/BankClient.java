@@ -6,6 +6,7 @@ import org.muss_amine_coding.bank_account_manager.remote.InsufficientFundsExcept
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BankClient {
@@ -30,7 +31,7 @@ public class BankClient {
         }
     }
 
-    private static void accountManipulation(BankAccountManager bankAccountManager) throws RemoteException, InsufficientFundsException {
+    private static void accountManipulation(BankAccountManager bankAccountManager) throws RemoteException, InsufficientFundsException, SQLException {
         BankAccount activeAccount;
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -120,11 +121,11 @@ public class BankClient {
             scanner.nextLine();
             switch (operation) {
                 case 1 -> {
-                    System.out.println("Enter amount to deposit");
+                    System.out.println("Enter amount to deposit:");
                     account.deposit(scanner.nextDouble());
                 }
                 case 2 -> {
-                    System.out.println("Enter amount to withdraw");
+                    System.out.println("Enter amount to withdraw:");
                     account.withdraw(scanner.nextDouble());
                 }
                 case 3 -> {
@@ -133,7 +134,7 @@ public class BankClient {
                 case 4 -> {
                     System.out.println("Enter receiver's account number: ");
                     String accountNumber = scanner.nextLine();
-                    System.out.println("Enter the amount you want to transfer");
+                    System.out.println("Enter the amount you want to transfer:");
                     double amount = scanner.nextDouble();
                     account.transfer(accountNumber, amount);
                     System.out.println(ANSI_YELLOW+"Transferred successfully"+ANSI_RESET);
